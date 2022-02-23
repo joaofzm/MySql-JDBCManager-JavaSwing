@@ -8,6 +8,7 @@ import java.util.List;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 
+import model.entties.Player;
 import view.components.Button;
 import view.components.Label;
 import view.components.Panel;
@@ -33,8 +34,8 @@ public class ResultsPanel implements ActionListener {
 		this.frame = frame;
 
 		panel = new Panel(1280, 720);
-		
-		logo = new Label(30,30,1280,80,"SEARCH RESULT",40,20,20,20);
+
+		logo = new Label(30, 30, 1280, 80, "SEARCH RESULT", 40, 20, 20, 20);
 		panel.add(logo);
 
 		returnButton = new Button(522, 550, 276, 80, "RETURN", 20, 20, 20);
@@ -44,24 +45,27 @@ public class ResultsPanel implements ActionListener {
 		bg = new JLabel();
 		bg.setSize(1280, 720);
 		bg.setBackground(Color.black);
-		
+
 		panel.getJComponent().add(bg);
 
 	}
-	
+
 	public void printResults(List<?> list) {
 		int y = 100;
 		for (Object obj : list) {
-			Label label = new Label(30,y,1000,30,obj.toString(),20,20,20,20);
+			Label label = new Label(30, y, 1280, 30, obj.toString(), 20, 20, 20, 20);
 			panel.add(label);
-			y+=30;
-			
+			y += 30;
 		}
+	}
+
+	public void printResults(Player p) {
+		Label label = new Label(30, 100, 1280, 30, p.toString(), 20, 20, 20, 20);
+		panel.add(label);
 	}
 
 	@Override
 	public void actionPerformed(ActionEvent e) {
-
 
 		if (e.getSource() == returnButton.getJComponent()) {
 			MenuPanel newPanel = new MenuPanel(frame);
