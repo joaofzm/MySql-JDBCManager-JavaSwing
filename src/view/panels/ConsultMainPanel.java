@@ -3,10 +3,14 @@ package view.panels;
 import java.awt.Color;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.List;
 
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 
+import model.dao.DaoFactory;
+import model.dao.PlayerDao;
+import model.entties.Player;
 import view.components.Button;
 import view.components.Label;
 import view.components.Panel;
@@ -47,7 +51,7 @@ public class ConsultMainPanel implements ActionListener {
 		findPlayerByIdButton.getJComponent().addActionListener(this);
 		panel.add(findPlayerByIdButton);
 
-		findPlayerByTeamButton = new Button(522, 230, 276, 50, "FIND PLAYER BY TEAM", 20, 20, 20);
+		findPlayerByTeamButton = new Button(522, 230, 276, 50, "FIND PLAYER BY TEAM ID", 20, 20, 20);
 		findPlayerByTeamButton.getJComponent().addActionListener(this);
 		panel.add(findPlayerByTeamButton);
 
@@ -77,15 +81,25 @@ public class ConsultMainPanel implements ActionListener {
 
 	@Override
 	public void actionPerformed(ActionEvent e) {
-
+		
 		if (e.getSource() == findPlayerByIdButton.getJComponent()) {
-			
+
 		}
 
 		if (e.getSource() == findPlayerByTeamButton.getJComponent()) {
 		}
 
 		if (e.getSource() == findAllPlayersButton.getJComponent()) {
+			PlayerDao playerDao = DaoFactory.createPlayerDaoJDBC();
+
+			List<Player> list = playerDao.findAll();
+
+			ResultsPanel newPanel = new ResultsPanel(frame);
+			newPanel.printResults(list);
+			frame.getContentPane().removeAll();
+			frame.getContentPane().add(newPanel.getPanel().getJComponent());
+			frame.revalidate();
+			newPanel.getPanel().getJComponent().repaint();
 		}
 
 		if (e.getSource() == returnButton.getJComponent()) {

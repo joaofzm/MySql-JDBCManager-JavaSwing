@@ -11,11 +11,11 @@ public class Player implements Serializable {
 	private String position;
 	private Date birthDate;
 	private Double baseSalary;
-	
+
 	private Team team;
-	
+
 	public Player() {
-		
+
 	}
 
 	public Player(Integer id, String name, String position, Date birthDate, Double baseSalary, Team team) {
@@ -94,13 +94,7 @@ public class Player implements Serializable {
 
 	@Override
 	public String toString() {
-		return "Player [id=" + id + ", name=" + name + ", position=" + position + ", birthDate=" + birthDate + ", baseSalary="
-				+ baseSalary + ", team =" + team + "]";
+		return name + " - " + position + " | " + team.getName() + " | Salary: " + baseSalary + " | DOB: "+birthDate;
 	}
-	
-	
-	
-	
-	
-	
+
 }
