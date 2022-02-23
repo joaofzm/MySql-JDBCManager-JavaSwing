@@ -1,15 +1,14 @@
 package view.panels;
 
 import java.awt.Color;
-import java.awt.Label;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-import javax.swing.ImageIcon;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 
 import view.components.Button;
+import view.components.Label;
 import view.components.Panel;
 
 public class MenuPanel implements ActionListener {
@@ -37,6 +36,9 @@ public class MenuPanel implements ActionListener {
 		this.frame = frame;
 
 		panel = new Panel(1280, 720);
+		
+		logo = new Label(30,30,1280,80,"NBA - Roster Manager",40,20,20,20);
+		panel.add(logo);
 
 		consultButton = new Button(522, 150, 276, 80, "CONSULT", 20, 20, 20);
 		consultButton.getJComponent().addActionListener(this);
@@ -70,13 +72,35 @@ public class MenuPanel implements ActionListener {
 	public void actionPerformed(ActionEvent e) {
 
 		if (e.getSource() == consultButton.getJComponent()) {
-			
+			ConsultMainPanel newPanel = new ConsultMainPanel(frame);
+			frame.getContentPane().removeAll();
+			frame.getContentPane().add(newPanel.getPanel().getJComponent());
+			frame.revalidate();
+			newPanel.getPanel().getJComponent().repaint();
 		}
 
 		if (e.getSource() == insertButton.getJComponent()) {
+			InsertMainPanel newPanel = new InsertMainPanel(frame);
+			frame.getContentPane().removeAll();
+			frame.getContentPane().add(newPanel.getPanel().getJComponent());
+			frame.revalidate();
+			newPanel.getPanel().getJComponent().repaint();
+		}
+		
+		if (e.getSource() == updateButton.getJComponent()) {
+			UpdateMainPanel newPanel = new UpdateMainPanel(frame);
+			frame.getContentPane().removeAll();
+			frame.getContentPane().add(newPanel.getPanel().getJComponent());
+			frame.revalidate();
+			newPanel.getPanel().getJComponent().repaint();
 		}
 
 		if (e.getSource() == deleteButton.getJComponent()) {
+			DeleteMainPanel newPanel = new DeleteMainPanel(frame);
+			frame.getContentPane().removeAll();
+			frame.getContentPane().add(newPanel.getPanel().getJComponent());
+			frame.revalidate();
+			newPanel.getPanel().getJComponent().repaint();
 		}
 
 		if (e.getSource() == exitButton.getJComponent()) {
